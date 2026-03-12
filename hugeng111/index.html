@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月度消费支出预算管理</title>
+    <!-- 引入Tailwind CSS简化样式开发 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 基础样式补充 */
+        .card {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">月度消费支出预算管理</h1>
+
+        <!-- 月份选择区域 -->
+        <div class="mb-6 flex items-center justify-center gap-4">
+            <label for="month-select" class="text-lg font-medium text-gray-700">选择月份：</label>
+            <select id="month-select" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="2026-01">2026年1月</option>
+                <option value="2026-02">2026年2月</option>
+                <option value="2026-03">2026年3月</option>
+                <option value="2026-04">2026年4月</option>
+                <option value="2026-05">2026年5月</option>
+                <option value="2026-06">2026年6月</option>
+                <option value="2026-07">2026年7月</option>
+                <option value="2026-08">2026年8月</option>
+                <option value="2026-09">2026年9月</option>
+                <option value="2026-10">2026年10月</option>
+                <option value="2026-11">2026年11月</option>
+                <option value="2026-12">2026年12月</option>
+            </select>
+        </div>
+
+        <!-- 预算录入表单 -->
+        <div class="card bg-white rounded-xl p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">支出分项录入</h2>
+            
+            <!-- 租房支出 -->
+            <div class="mb-4">
+                <h3 class="text-lg font-medium text-gray-700 mb-2">租房支出</h3>
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <label class="block text-sm text-gray-600 mb-1">预算金额（元）</label>
+                        <input type="number" id="rent-budget" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="输入租房预算">
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm text-gray-600 mb-1">实际支出（元）</label>
+                        <input type="number" id="rent-actual" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="输入实际支出">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 水电支出 -->
+            <div class="mb-4">
+                <h3 class="text-lg font-medium text-gray-700 mb-2">水电支出</h3>
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <label class="block text-sm text-gray-600 mb-1">预算金额（元）</label>
+                        <input type="number" id="utility-budget" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="输入水电预算">
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm text-gray-600 mb-1">实际支出（元）</label>
+                        <input type="number" id="utility-actual" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="输入实际支出">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 消费支出（子分项） -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium text-gray-700 mb-2">消费支出</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">餐饮预算（元）</label>
+                        <input type="number" id="food-budget" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="餐饮预算">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">购物预算（元）</label>
+                        <input type="number" id="shop-budget" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="购物预算">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">娱乐预算（元）</label>
+                        <input type="number" id="entertain-budget" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="娱乐预算">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">餐饮实际（元）</label>
+                        <input type="number" id="food-actual" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="餐饮实际">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">购物实际（元）</label>
+                        <input type="number" id="shop-actual" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="购物实际">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">娱乐实际（元）</label>
+                        <input type="number" id="entertain-actual" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="娱乐实际">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="flex gap-4 justify-center">
+                <button id="save-btn" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">保存数据</button>
+                <button id="reset-btn" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">清空表单</button>
+            </div>
+        </div>
+
+        <!-- 预算统计展示 -->
+        <div class="card bg-white rounded-xl p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">月度预算统计</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center p-4 border rounded-lg bg-gray-50">
+                    <p class="text-gray-600 mb-2">总预算金额</p>
+                    <p id="total-budget" class="text-2xl font-bold text-green-600">¥ 0.00</p>
+                </div>
+                <div class="text-center p-4 border rounded-lg bg-gray-50">
+                    <p class="text-gray-600 mb-2">总实际支出</p>
+                    <p id="total-actual" class="text-2xl font-bold text-red-600">¥ 0.00</p>
+                </div>
+                <div class="text-center p-4 border rounded-lg bg-gray-50">
+                    <p class="text-gray-600 mb-2">预算差额</p>
+                    <p id="balance" class="text-2xl font-bold text-blue-600">¥ 0.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量：存储所有月份的预算数据
+        let budgetData = JSON.parse(localStorage.getItem('budgetData')) || {};
+        const monthSelect = document.getElementById('month-select');
+        
+        // 初始化页面：加载当前选中月份的数据
+        function initPage() {
+            const currentMonth = monthSelect.value;
+            loadMonthData(currentMonth);
+            calculateTotal();
+        }
+
+        // 加载指定月份的数据到表单
+        function loadMonthData(month) {
+            const data = budgetData[month] || {
+                rent: { budget: '', actual: '' },
+                utility: { budget: '', actual: '' },
+                food: { budget: '', actual: '' },
+                shop: { budget: '', actual: '' },
+                entertain: { budget: '', actual: '' }
+            };
+
+            // 填充租房数据
+            document.getElementById('rent-budget').value = data.rent.budget;
+            document.getElementById('rent-actual').value = data.rent.actual;
+            
+            // 填充水电数据
+            document.getElementById('utility-budget').value = data.utility.budget;
+            document.getElementById('utility-actual').value = data.utility.actual;
+            
+            // 填充消费子项数据
+            document.getElementById('food-budget').value = data.food.budget;
+            document.getElementById('food-actual').value = data.food.actual;
+            document.getElementById('shop-budget').value = data.shop.budget;
+            document.getElementById('shop-actual').value = data.shop.actual;
+            document.getElementById('entertain-budget').value = data.entertain.budget;
+            document.getElementById('entertain-actual').value = data.entertain.actual;
+        }
+
+        // 计算总预算、总实际支出、差额
+        function calculateTotal() {
+            // 获取所有输入值（空值转0）
+            const rentBudget = Number(document.getElementById('rent-budget').value) || 0;
+            const rentActual = Number(document.getElementById('rent-actual').value) || 0;
+            const utilityBudget = Number(document.getElementById('utility-budget').value) || 0;
+            const utilityActual = Number(document.getElementById('utility-actual').value) || 0;
+            const foodBudget = Number(document.getElementById('food-budget').value) || 0;
+            const foodActual = Number(document.getElementById('food-actual').value) || 0;
+            const shopBudget = Number(document.getElementById('shop-budget').value) || 0;
+            const shopActual = Number(document.getElementById('shop-actual').value) || 0;
+            const entertainBudget = Number(document.getElementById('entertain-budget').value) || 0;
+            const entertainActual = Number(document.getElementById('entertain-actual').value) || 0;
+
+            // 计算总和
+            const totalBudget = rentBudget + utilityBudget + foodBudget + shopBudget + entertainBudget;
+            const totalActual = rentActual + utilityActual + foodActual + shopActual + entertainActual;
+            const balance = totalBudget - totalActual;
+
+            // 更新页面显示（保留2位小数）
+            document.getElementById('total-budget').textContent = `¥ ${totalBudget.toFixed(2)}`;
+            document.getElementById('total-actual').textContent = `¥ ${totalActual.toFixed(2)}`;
+            document.getElementById('balance').textContent = `¥ ${balance.toFixed(2)}`;
+            
+            // 给差额添加颜色：盈余为绿，超支为红
+            const balanceEl = document.getElementById('balance');
+            if (balance > 0) {
+                balanceEl.className = 'text-2xl font-bold text-green-600';
+            } else if (balance < 0) {
+                balanceEl.className = 'text-2xl font-bold text-red-600';
+            } else {
+                balanceEl.className = 'text-2xl font-bold text-blue-600';
+            }
+        }
+
+        // 保存当前月份的数据
+        function saveMonthData() {
+            const currentMonth = monthSelect.value;
+            // 收集表单数据
+            const data = {
+                rent: {
+                    budget: document.getElementById('rent-budget').value,
+                    actual: document.getElementById('rent-actual').value
+                },
+                utility: {
+                    budget: document.getElementById('utility-budget').value,
+                    actual: document.getElementById('utility-actual').value
+                },
+                food: {
+                    budget: document.getElementById('food-budget').value,
+                    actual: document.getElementById('food-actual').value
+                },
+                shop: {
+                    budget: document.getElementById('shop-budget').value,
+                    actual: document.getElementById('shop-actual').value
+                },
+                entertain: {
+                    budget: document.getElementById('entertain-budget').value,
+                    actual: document.getElementById('entertain-actual').value
+                }
+            };
+            // 保存到全局数据并存储到本地
+            budgetData[currentMonth] = data;
+            localStorage.setItem('budgetData', JSON.stringify(budgetData));
+            // 提示保存成功
+            alert('数据保存成功！');
+            // 重新计算统计
+            calculateTotal();
+        }
+
+        // 清空表单
+        function resetForm() {
+            if (confirm('确定要清空当前表单吗？已保存的数据不会丢失')) {
+                document.getElementById('rent-budget').value = '';
+                document.getElementById('rent-actual').value = '';
+                document.getElementById('utility-budget').value = '';
+                document.getElementById('utility-actual').value = '';
+                document.getElementById('food-budget').value = '';
+                document.getElementById('food-actual').value = '';
+                document.getElementById('shop-budget').value = '';
+                document.getElementById('shop-actual').value = '';
+                document.getElementById('entertain-budget').value = '';
+                document.getElementById('entertain-actual').value = '';
+                calculateTotal();
+            }
+        }
+
+        // 绑定事件
+        window.addEventListener('DOMContentLoaded', initPage);
+        monthSelect.addEventListener('change', function() {
+            loadMonthData(this.value);
+            calculateTotal();
+        });
+        document.getElementById('save-btn').addEventListener('click', saveMonthData);
+        document.getElementById('reset-btn').addEventListener('click', resetForm);
+        // 输入框值变化时自动计算统计
+        const allInputs = document.querySelectorAll('input[type="number"]');
+        allInputs.forEach(input => {
+            input.addEventListener('input', calculateTotal);
+        });
+    </script>
+</body>
+</html>
