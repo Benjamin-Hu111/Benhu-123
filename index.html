@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人导航页</title>
+    <!-- 引入Font Awesome图标库（免费） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        /* 容器居中 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* 头部 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #718096;
+            font-size: 1rem;
+        }
+        /* 搜索框 */
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .search-box input:focus {
+            border-color: #4299e1;
+            box-shadow: 0 2px 8px rgba(66,153,225,0.2);
+        }
+        .search-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4299e1;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        /* 导航分类 */
+        .nav-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        /* 分类卡片 */
+        .category-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 25px 20px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .category-card .title {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .category-card .title i {
+            color: #4299e1;
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+        /* 链接列表 */
+        .link-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 6px;
+            color: #4a5568;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .link-item:hover {
+            background-color: #f7fafc;
+            color: #4299e1;
+        }
+        .link-item i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        .link-item span {
+            font-size: 0.95rem;
+        }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .nav-categories {
+                grid-template-columns: 1fr;
+            }
+            .link-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部：自定义名称/签名 -->
+        <div class="header">
+            <h1>我的导航页</h1>
+            <p>高效访问 · 常用链接汇总</p>
+        </div>
+
+        <!-- 搜索框：支持百度搜索，可修改为谷歌/必应 -->
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="输入关键词搜索...">
+            <button onclick="search()"><i class="fas fa-search"></i></button>
+        </div>
+
+        <!-- 导航分类：核心部分，自定义分类/链接/图标 -->
+        <div class="nav-categories">
+            <!-- 分类1：工作工具 -->
+            <div class="category-card">
+                <div class="title"><i class="fas fa-briefcase"></i>工作工具</div>
+                <div class="link-list">
+                    <a href="https://mail.qq.com" target="_blank" class="link-item"><i class="fas fa-envelope"></i><span>QQ邮箱</span></a>
+                    <a href="https://docs.qq.com" target="_blank" class="link-item"><i class="fas fa-file"></i><span>腾讯文档</span></a>
+                    <a href="https://www.notion.so" target="_blank" class="link-item"><i class="fas fa-book"></i><span>Notion</span></a>
+                    <a href="https://github.com" target="_blank" class="link-item"><i class="fab fa-github"></i><span>GitHub</span></a>
+                </div>
+            </div>
+
+            <!-- 分类2：自媒体平台 -->
+            <div class="category-card">
+                <div class="title"><i class="fas fa-share-alt"></i>自媒体平台</div>
+                <div class="link-list">
+                    <a href="https://mp.weixin.qq.com" target="_blank" class="link-item"><i class="fab fa-weixin"></i><span>微信公众号</span></a>
+                    <a href="https://www.douyin.com" target="_blank" class="link-item"><i class="fas fa-video"></i><span>抖音创作者</span></a>
+                    <a href="https://space.bilibili.com" target="_blank" class="link-item"><i class="fab fa-bilibili"></i><span>B站创作中心</span></a>
+                    <a href="https://www.xiaohongshu.com" target="_blank" class="link-item"><i class="fas fa-redhat"></i><span>小红书创作者</span></a>
+                </div>
+            </div>
+
+            <!-- 分类3：生活服务 -->
+            <div class="category-card">
+                <div class="title"><i class="fas fa-life-ring"></i>生活服务</div>
+                <div class="link-list">
+                    <a href="https://www.taobao.com" target="_blank" class="link-item"><i class="fas fa-shopping-cart"></i><span>淘宝</span></a>
+                    <a href="https://map.baidu.com" target="_blank" class="link-item"><i class="fas fa-map-marker-alt"></i><span>百度地图</span></a>
+                    <a href="https://music.163.com" target="_blank" class="link-item"><i class="fas fa-music"></i><span>网易云音乐</span></a>
+                    <a href="https://movie.douban.com" target="_blank" class="link-item"><i class="fas fa-film"></i><span>豆瓣电影</span></a>
+                </div>
+            </div>
+
+            <!-- 分类4：学习资源 -->
+            <div class="category-card">
+                <div class="title"><i class="fas fa-book-reader"></i>学习资源</div>
+                <div class="link-list">
+                    <a href="https://www.bilibili.com" target="_blank" class="link-item"><i class="fab fa-bilibili"></i><span>B站学习</span></a>
+                    <a href="https://www.zhihu.com" target="_blank" class="link-item"><i class="fas fa-comment-dots"></i><span>知乎</span></a>
+                    <a href="https://leetcode.cn" target="_blank" class="link-item"><i class="fas fa-code"></i><span>力扣</span></a>
+                    <a href="https://dict.youdao.com" target="_blank" class="link-item"><i class="fas fa-dictionary"></i><span>有道词典</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 搜索功能：默认百度搜索，可修改为谷歌(https://www.google.com/search?q=)
+        function search() {
+            const input = document.getElementById('search-input');
+            const keyword = input.value.trim();
+            if (keyword) {
+                window.open(`https://www.baidu.com/s?wd=${keyword}`, '_blank');
+                input.value = '';
+            } else {
+                input.focus();
+            }
+        }
+        // 按回车键触发搜索
+        document.getElementById('search-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') search();
+        });
+    </script>
+</body>
+</html>
